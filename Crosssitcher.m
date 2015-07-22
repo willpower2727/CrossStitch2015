@@ -53,11 +53,30 @@ function Crosssitcher_OpeningFcn(hObject, eventdata, handles, varargin)
 % varargin   command line arguments to crosssitcher (see VARARGIN)
 clc
 global localim
-localim = [];
+global dmc
+global hand
 % set(handles.axes1,'buttondownfcn',@start_pencil);
 % Choose default command line output for crosssitcher
 handles.output = hObject;
+hand = guihandles(gcf);
+localim = rand(10,10,3);
+axes(handles.axes1);
+imagesc(localim);
+%setup color wheel
+load dmc
+dmc = DMCmap(:,2:4);%only rgb values, no DMC #'s
+x = ones(360,1);
+axes(handles.axes2)
+H = pie(x);
 
+zz = 1;
+for z = 1:2:length(x)*2-1
+    set(H(z),'FaceColor',dmc(zz,:)./255)
+    set(H(z),'EdgeColor','none');
+    hText = findobj(H(z+1),'Type','text'); % text object handles
+    delete(hText);
+    zz = zz+1;
+end
 % Update handles structure
 guidata(hObject, handles);
 
@@ -369,8 +388,9 @@ guidata(hObject, handles);
 function start_pencil(src,eventdata)
 global localim;
 global hh
-% handles = guihandles(gcbo);
-coords=get(gca,'CurrentPoint'); %since this is the axes callback, src=gca
+global hand
+
+coords=get(hand.axes1,'CurrentPoint'); %since this is the axes callback, src=gca
 x=coords(1,1,1);
 y=coords(1,2,1);
 
@@ -388,13 +408,16 @@ try
     localim(round(y),round(x),3) = 0;
 catch me
 end
+axes(hand.axes1);
 set(hh,'CData',localim);
 
 function continue_pencil(src,eventdata)
 global localim
 global hh
+global hand
+% hand = guihandles(gcf);
 %Note: src is now the figure handle, not the axes, so we need to use gca.
-coords=get(gca,'currentpoint'); %this updates every time i move the mouse
+coords=get(hand.axes1,'currentpoint'); %this updates every time i move the mouse
 x=coords(1,1,1);
 y=coords(1,2,1);
 try
@@ -403,6 +426,7 @@ localim(round(y),round(x),2) = 0;
 localim(round(y),round(x),3) = 0;
 catch me
 end
+axes(hand.axes1);
 set(hh,'CData',localim);
 
 function done_pencil(src,evendata)
