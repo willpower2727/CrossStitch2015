@@ -61,7 +61,9 @@ handles.output = hObject;
 hand = guihandles(gcf);
 localim = rand(10,10,3);
 axes(handles.axes1);
-imagesc(localim);
+% set(handles.axes1,'CData',localim);
+imshow(localim);
+drawnow
 %setup color wheel
 load dmc
 dmc = DMCmap(:,2:4);%only rgb values, no DMC #'s
@@ -77,6 +79,8 @@ for z = 1:2:length(x)*2-1
     delete(hText);
     zz = zz+1;
 end
+
+axes(handles.axes1)
 % Update handles structure
 guidata(hObject, handles);
 
@@ -116,7 +120,10 @@ localim = imread([path filename]);
 % else
 % end
 axes(handles.axes1)
-imagesc(localim);
+% set(handles.axes1,'CData',localim);
+imshow(localim);
+drawnow
+% imagesc(localim);
 % keyboard
 
 
@@ -144,7 +151,10 @@ else
 localim = imresize(localim,[size(localim,1) str2num(get(handles.Htext,'String'))],'antialiasing',true);
 end
 axes(handles.axes1);
-imagesc(localim);
+% set(handles.axes1,'CData',localim);
+imshow(localim);
+drawnow
+% imagesc(localim);
 guidata(hObject, handles);
 % Hints: get(hObject,'String') returns contents of Wtext as text
 %        str2double(get(hObject,'String')) returns contents of Wtext as a double
@@ -177,7 +187,10 @@ else
 localim = imresize(localim,[str2num(get(handles.Htext,'String')) size(localim,2)],'antialiasing',true);
 end
 axes(handles.axes1);
-imagesc(localim);
+% set(handles.axes1,'CData',localim);
+imshow(localim);
+drawnow
+% imagesc(localim);
 guidata(hObject, handles);
 % Hints: get(hObject,'String') returns contents of Htext as text
 %        str2double(get(hObject,'String')) returns contents of Htext as a double
@@ -230,7 +243,10 @@ for z=1:m
 end
 localim = newim;
 axes(handles.axes1);
-imagesc(localim);
+% set(handles.axes1,'CData',localim);
+imshow(localim);
+drawnow
+% imagesc(localim);
 
 guidata(hObject, handles);
 
@@ -243,7 +259,10 @@ function transposebutton_Callback(hObject, eventdata, handles)
 global localim
 localim = permute(localim,[2 1 3]);
 axes(handles.axes1);
-imagesc(localim);
+% set(handles.axes1,'CData',localim);
+imshow(localim);
+drawnow
+% imagesc(localim);
 
 guidata(hObject, handles);
 
@@ -262,7 +281,9 @@ h = inputdlg('Please enter the height(squares)');
 localim = uint8(255*ones(str2num(h{1}),str2num(w{1}),3));
 
 axes(handles.axes1)
-imagesc(localim);
+% set(handles.axes1,'CData',localim);
+imshow(localim);
+% imagesc(localim);
 
 guidata(hObject, handles);
 % --- Executes on button press in meshtoggle.
@@ -335,7 +356,10 @@ if get(handles.meshtoggle,'Value') == 1
     hold off
 else
     axes(handles.axes1)
-    imagesc(localim);
+%     set(handles.axes1,'CData',localim);
+imshow(localim);
+drawnow
+%     imagesc(localim);
 end
 
 guidata(hObject, handles);
@@ -389,7 +413,7 @@ function start_pencil(src,eventdata)
 global localim;
 global hh
 global hand
-
+axes(hand.axes1);
 coords=get(hand.axes1,'CurrentPoint'); %since this is the axes callback, src=gca
 x=coords(1,1,1);
 y=coords(1,2,1);
@@ -417,6 +441,7 @@ global hh
 global hand
 % hand = guihandles(gcf);
 %Note: src is now the figure handle, not the axes, so we need to use gca.
+axes(hand.axes1);
 coords=get(hand.axes1,'currentpoint'); %this updates every time i move the mouse
 x=coords(1,1,1);
 y=coords(1,2,1);
@@ -431,5 +456,7 @@ set(hh,'CData',localim);
 
 function done_pencil(src,evendata)
 %all this funciton does is turn the motion function off 
+global hand
+axes(hand.axes1);
 set(gcf,'windowbuttonmotionfcn','')
 set(gcf,'windowbuttonupfcn','')
