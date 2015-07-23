@@ -62,23 +62,23 @@ hand = guihandles(gcf);
 localim = rand(10,10,3);
 axes(handles.axes1);
 % set(handles.axes1,'CData',localim);
-imshow(localim);
+imagesc(localim);
 drawnow
 %setup color wheel
 load dmc
-dmc = DMCmap(:,2:4);%only rgb values, no DMC #'s
-x = ones(360,1);
-axes(handles.axes2)
-H = pie(x);
+dmc = DMCmap;%only rgb values, no DMC #'s
+% x = ones(360,1);
+% axes(handles.axes2)
+% H = pie(x);
 
-zz = 1;
-for z = 1:2:length(x)*2-1
-    set(H(z),'FaceColor',dmc(zz,:)./255)
-    set(H(z),'EdgeColor','none');
-    hText = findobj(H(z+1),'Type','text'); % text object handles
-    delete(hText);
-    zz = zz+1;
-end
+% zz = 1;
+% for z = 1:2:length(x)*2-1
+%     set(H(z),'FaceColor',dmc(zz,:)./255)
+%     set(H(z),'EdgeColor','none');
+%     hText = findobj(H(z+1),'Type','text'); % text object handles
+%     delete(hText);
+%     zz = zz+1;
+% end
 
 axes(handles.axes1)
 % Update handles structure
@@ -121,7 +121,7 @@ localim = imread([path filename]);
 % end
 axes(handles.axes1)
 % set(handles.axes1,'CData',localim);
-imshow(localim);
+imagesc(localim);
 drawnow
 % imagesc(localim);
 % keyboard
@@ -152,7 +152,7 @@ localim = imresize(localim,[size(localim,1) str2num(get(handles.Htext,'String'))
 end
 axes(handles.axes1);
 % set(handles.axes1,'CData',localim);
-imshow(localim);
+imagesc(localim);
 drawnow
 % imagesc(localim);
 guidata(hObject, handles);
@@ -188,7 +188,7 @@ localim = imresize(localim,[str2num(get(handles.Htext,'String')) size(localim,2)
 end
 axes(handles.axes1);
 % set(handles.axes1,'CData',localim);
-imshow(localim);
+imagesc(localim);
 drawnow
 % imagesc(localim);
 guidata(hObject, handles);
@@ -244,7 +244,7 @@ end
 localim = newim;
 axes(handles.axes1);
 % set(handles.axes1,'CData',localim);
-imshow(localim);
+imagesc(localim);
 drawnow
 % imagesc(localim);
 
@@ -260,7 +260,7 @@ global localim
 localim = permute(localim,[2 1 3]);
 axes(handles.axes1);
 % set(handles.axes1,'CData',localim);
-imshow(localim);
+imagesc(localim);
 drawnow
 % imagesc(localim);
 
@@ -282,7 +282,7 @@ localim = uint8(255*ones(str2num(h{1}),str2num(w{1}),3));
 
 axes(handles.axes1)
 % set(handles.axes1,'CData',localim);
-imshow(localim);
+imagesc(localim);
 % imagesc(localim);
 
 guidata(hObject, handles);
@@ -357,7 +357,7 @@ if get(handles.meshtoggle,'Value') == 1
 else
     axes(handles.axes1)
 %     set(handles.axes1,'CData',localim);
-imshow(localim);
+imagesc(localim);
 drawnow
 %     imagesc(localim);
 end
