@@ -22,7 +22,7 @@ function varargout = Crosssitcher(varargin)
 
 % Edit the above text to modify the response to help crosssitcher
 
-% Last Modified by GUIDE v2.5 16-Jul-2015 19:53:01
+% Last Modified by GUIDE v2.5 23-Jul-2015 20:52:37
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -67,10 +67,150 @@ drawnow
 %setup color wheel
 load dmc
 dmc = DMCmap;%only rgb values, no DMC #'s
+
+temp = zeros(1,23,3);
+temp(:,:,1) = dmc(1:23,2)./255;
+temp(:,:,2) = dmc(1:23,3)./255;
+temp(:,:,3) = dmc(1:23,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group1,'CData',temp);
+clear temp;
+temp = zeros(1,25,3);
+temp(:,:,1) = dmc(24:48,2)./255;
+temp(:,:,2) = dmc(24:48,3)./255;
+temp(:,:,3) = dmc(24:48,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group2,'CData',temp);
+clear temp;
+temp = zeros(1,25,3);
+temp(:,:,1) = dmc(49:73,2)./255;
+temp(:,:,2) = dmc(49:73,3)./255;
+temp(:,:,3) = dmc(49:73,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group3,'CData',temp);
+clear temp;
+temp = zeros(1,25,3);
+temp(:,:,1) = dmc(74:98,2)./255;
+temp(:,:,2) = dmc(74:98,3)./255;
+temp(:,:,3) = dmc(74:98,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group4,'CData',temp);
+clear temp;
+temp = zeros(1,26,3);
+temp(:,:,1) = dmc(99:124,2)./255;
+temp(:,:,2) = dmc(99:124,3)./255;
+temp(:,:,3) = dmc(99:124,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group5,'CData',temp);
+clear temp;
+temp = zeros(1,24,3);
+temp(:,:,1) = dmc(125:148,2)./255;
+temp(:,:,2) = dmc(125:148,3)./255;
+temp(:,:,3) = dmc(125:148,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group6,'CData',temp);
+clear temp;
+temp = zeros(1,24,3);
+temp(:,:,1) = dmc(149:172,2)./255;
+temp(:,:,2) = dmc(149:172,3)./255;
+temp(:,:,3) = dmc(149:172,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group7,'CData',temp);
+clear temp;
+temp = zeros(1,25,3);
+temp(:,:,1) = dmc(173:197,2)./255;
+temp(:,:,2) = dmc(173:197,3)./255;
+temp(:,:,3) = dmc(173:197,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group8,'CData',temp);
+clear temp;
+temp = zeros(1,25,3);
+temp(:,:,1) = dmc(198:222,2)./255;
+temp(:,:,2) = dmc(198:222,3)./255;
+temp(:,:,3) = dmc(198:222,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group9,'CData',temp);
+clear temp;
+temp = zeros(1,25,3);
+temp(:,:,1) = dmc(223:247,2)./255;
+temp(:,:,2) = dmc(223:247,3)./255;
+temp(:,:,3) = dmc(223:247,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group10,'CData',temp);
+clear temp;
+temp = zeros(1,23,3);
+temp(:,:,1) = dmc(248:270,2)./255;
+temp(:,:,2) = dmc(248:270,3)./255;
+temp(:,:,3) = dmc(248:270,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group11,'CData',temp);
+clear temp;
+temp = zeros(1,25,3);
+temp(:,:,1) = dmc(271:295,2)./255;
+temp(:,:,2) = dmc(271:295,3)./255;
+temp(:,:,3) = dmc(271:295,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group12,'CData',temp);
+clear temp;
+temp = zeros(1,26,3);
+temp(:,:,1) = dmc(296:321,2)./255;
+temp(:,:,2) = dmc(296:321,3)./255;
+temp(:,:,3) = dmc(296:321,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group13,'CData',temp);
+clear temp;
+temp = zeros(1,26,3);
+temp(:,:,1) = dmc(322:347,2)./255;
+temp(:,:,2) = dmc(322:347,3)./255;
+temp(:,:,3) = dmc(322:347,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group14,'CData',temp);
+clear temp;
+temp = zeros(1,24,3);
+temp(:,:,1) = dmc(348:371,2)./255;
+temp(:,:,2) = dmc(348:371,3)./255;
+temp(:,:,3) = dmc(348:371,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group15,'CData',temp);
+clear temp;
+temp = zeros(1,24,3);
+temp(:,:,1) = dmc(372:395,2)./255;
+temp(:,:,2) = dmc(372:395,3)./255;
+temp(:,:,3) = dmc(372:395,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group16,'CData',temp);
+clear temp;
+temp = zeros(1,24,3);
+temp(:,:,1) = dmc(396:419,2)./255;
+temp(:,:,2) = dmc(396:419,3)./255;
+temp(:,:,3) = dmc(396:419,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group17,'CData',temp);
+clear temp;
+temp = zeros(1,8,3);
+temp(:,:,1) = dmc(420:427,2)./255;
+temp(:,:,2) = dmc(420:427,3)./255;
+temp(:,:,3) = dmc(420:427,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group18,'CData',temp);
+clear temp;
+temp = zeros(1,20,3);
+temp(:,:,1) = dmc(428:447,2)./255;
+temp(:,:,2) = dmc(428:447,3)./255;
+temp(:,:,3) = dmc(428:447,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group19,'CData',temp);
+clear temp;
+temp = zeros(1,7,3);
+temp(:,:,1) = dmc(448:end,2)./255;
+temp(:,:,2) = dmc(448:end,3)./255;
+temp(:,:,3) = dmc(448:end,4)./255;
+temp = imresize(temp,[15,92],'nearest');
+set(handles.group20,'CData',temp);
+
 % x = ones(360,1);
 % axes(handles.axes2)
 % H = pie(x);
-
 % zz = 1;
 % for z = 1:2:length(x)*2-1
 %     set(H(z),'FaceColor',dmc(zz,:)./255)
@@ -80,7 +220,7 @@ dmc = DMCmap;%only rgb values, no DMC #'s
 %     zz = zz+1;
 % end
 
-axes(handles.axes1)
+% axes(handles.axes1)
 % Update handles structure
 guidata(hObject, handles);
 
@@ -224,7 +364,8 @@ function convertcolorbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global localim
-load dmc.mat
+global dmc
+% load dmc.mat
 [m,n,p] = size(localim);
 newim = uint8(zeros(m,n,p));
 R = double(localim(:,:,1));
@@ -233,11 +374,11 @@ B = double(localim(:,:,3));
 % keyboard
 for z=1:m
     for zz = 1:n
-            D = sqrt((R(z,zz)-DMCmap(:,2)).^2+(G(z,zz)-DMCmap(:,3)).^2+(B(z,zz)-DMCmap(:,4)).^2);
+            D = sqrt((R(z,zz)-dmc(:,2)).^2+(G(z,zz)-dmc(:,3)).^2+(B(z,zz)-dmc(:,4)).^2);
             [~,ind] = min(D);%find closest color
-            newim(z,zz,1)=DMCmap(ind,2);
-            newim(z,zz,2)=DMCmap(ind,3);
-            newim(z,zz,3)=DMCmap(ind,4);
+            newim(z,zz,1)=dmc(ind,2);
+            newim(z,zz,2)=dmc(ind,3);
+            newim(z,zz,3)=dmc(ind,4);
 %             disp([num2str(z) num2str(zz)]);
     end
 end
@@ -460,3 +601,183 @@ global hand
 axes(hand.axes1);
 set(gcf,'windowbuttonmotionfcn','')
 set(gcf,'windowbuttonupfcn','')
+
+
+% --- Executes on button press in group1.
+function group1_Callback(hObject, eventdata, handles)
+% hObject    handle to group1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group1
+
+
+% --- Executes on button press in group2.
+function group2_Callback(hObject, eventdata, handles)
+% hObject    handle to group2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group2
+
+
+% --- Executes on button press in group3.
+function group3_Callback(hObject, eventdata, handles)
+% hObject    handle to group3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group3
+
+
+% --- Executes on button press in group4.
+function group4_Callback(hObject, eventdata, handles)
+% hObject    handle to group4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group4
+
+
+% --- Executes on button press in group5.
+function group5_Callback(hObject, eventdata, handles)
+% hObject    handle to group5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group5
+
+
+% --- Executes on button press in group6.
+function group6_Callback(hObject, eventdata, handles)
+% hObject    handle to group6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group6
+
+
+% --- Executes on button press in group7.
+function group7_Callback(hObject, eventdata, handles)
+% hObject    handle to group7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group7
+
+
+% --- Executes on button press in group8.
+function group8_Callback(hObject, eventdata, handles)
+% hObject    handle to group8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group8
+
+
+% --- Executes on button press in group9.
+function group9_Callback(hObject, eventdata, handles)
+% hObject    handle to group9 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group9
+
+
+% --- Executes on button press in group10.
+function group10_Callback(hObject, eventdata, handles)
+% hObject    handle to group10 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group10
+
+
+% --- Executes on button press in group11.
+function group11_Callback(hObject, eventdata, handles)
+% hObject    handle to group11 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group11
+
+
+% --- Executes on button press in group12.
+function group12_Callback(hObject, eventdata, handles)
+% hObject    handle to group12 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group12
+
+
+% --- Executes on button press in group13.
+function group13_Callback(hObject, eventdata, handles)
+% hObject    handle to group13 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group13
+
+
+% --- Executes on button press in group14.
+function group14_Callback(hObject, eventdata, handles)
+% hObject    handle to group14 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group14
+
+
+% --- Executes on button press in group15.
+function group15_Callback(hObject, eventdata, handles)
+% hObject    handle to group15 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group15
+
+
+% --- Executes on button press in group16.
+function group16_Callback(hObject, eventdata, handles)
+% hObject    handle to group16 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group16
+
+
+% --- Executes on button press in group17.
+function group17_Callback(hObject, eventdata, handles)
+% hObject    handle to group17 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group17
+
+
+% --- Executes on button press in group18.
+function group18_Callback(hObject, eventdata, handles)
+% hObject    handle to group18 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group18
+
+
+% --- Executes on button press in group19.
+function group19_Callback(hObject, eventdata, handles)
+% hObject    handle to group19 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group19
+
+
+% --- Executes on button press in group20.
+function group20_Callback(hObject, eventdata, handles)
+% hObject    handle to group20 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of group20
