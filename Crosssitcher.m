@@ -22,7 +22,7 @@ function varargout = Crosssitcher(varargin)
 
 % Edit the above text to modify the response to help crosssitcher
 
-% Last Modified by GUIDE v2.5 23-Jul-2015 20:52:37
+% Last Modified by GUIDE v2.5 24-Jul-2015 08:50:31
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -55,6 +55,8 @@ clc
 global localim
 global dmc
 global hand
+global pencolor
+pencolor = [0,0,0];%start with black pen
 % set(handles.axes1,'buttondownfcn',@start_pencil);
 % Choose default command line output for crosssitcher
 handles.output = hObject;
@@ -554,6 +556,7 @@ function start_pencil(src,eventdata)
 global localim;
 global hh
 global hand
+global pencolor
 axes(hand.axes1);
 coords=get(hand.axes1,'CurrentPoint'); %since this is the axes callback, src=gca
 x=coords(1,1,1);
@@ -568,9 +571,9 @@ y=coords(1,2,1);
 set(gcf,'windowbuttonmotionfcn',{@continue_pencil})
 set(gcf,'windowbuttonupfcn',@done_pencil)
 try
-    localim(round(y),round(x),1) = 0;
-    localim(round(y),round(x),2) = 0;
-    localim(round(y),round(x),3) = 0;
+    localim(round(y),round(x),1) = pencolor(1);
+    localim(round(y),round(x),2) = pencolor(2);
+    localim(round(y),round(x),3) = pencolor(3);
 catch me
 end
 axes(hand.axes1);
@@ -580,6 +583,7 @@ function continue_pencil(src,eventdata)
 global localim
 global hh
 global hand
+global pencolor
 % hand = guihandles(gcf);
 %Note: src is now the figure handle, not the axes, so we need to use gca.
 axes(hand.axes1);
@@ -587,9 +591,9 @@ coords=get(hand.axes1,'currentpoint'); %this updates every time i move the mouse
 x=coords(1,1,1);
 y=coords(1,2,1);
 try
-localim(round(y),round(x),1) = 0;
-localim(round(y),round(x),2) = 0;
-localim(round(y),round(x),3) = 0;
+localim(round(y),round(x),1) = pencolor(1);
+localim(round(y),round(x),2) = pencolor(2);
+localim(round(y),round(x),3) = pencolor(3);
 catch me
 end
 axes(hand.axes1);
@@ -611,7 +615,14 @@ function group1_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of group1
 
-
+global dmc
+for z = 1:23
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z,2)/255) ',' num2str(dmc(z,3)/255) ',' num2str(dmc(z,4)/255) '])']);
+end
+for z=24:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 % --- Executes on button press in group2.
 function group2_Callback(hObject, eventdata, handles)
 % hObject    handle to group2 (see GCBO)
@@ -619,7 +630,14 @@ function group2_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group2
-
+global dmc
+for z = 1:25
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+23,2)/255) ',' num2str(dmc(z+23,3)/255) ',' num2str(dmc(z+23,4)/255) '])']);
+end
+for z=26:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group3.
 function group3_Callback(hObject, eventdata, handles)
@@ -628,7 +646,14 @@ function group3_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group3
-
+global dmc
+for z = 1:25
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+48,2)/255) ',' num2str(dmc(z+48,3)/255) ',' num2str(dmc(z+48,4)/255) '])']);
+end
+for z=26:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group4.
 function group4_Callback(hObject, eventdata, handles)
@@ -637,7 +662,14 @@ function group4_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group4
-
+global dmc
+for z = 1:25
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+73,2)/255) ',' num2str(dmc(z+73,3)/255) ',' num2str(dmc(z+73,4)/255) '])']);
+end
+for z=26:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group5.
 function group5_Callback(hObject, eventdata, handles)
@@ -646,7 +678,14 @@ function group5_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group5
-
+global dmc
+for z = 1:26
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+98,2)/255) ',' num2str(dmc(z+98,3)/255) ',' num2str(dmc(z+98,4)/255) '])']);
+end
+for z=27:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group6.
 function group6_Callback(hObject, eventdata, handles)
@@ -655,7 +694,14 @@ function group6_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group6
-
+global dmc
+for z = 1:24
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+124,2)/255) ',' num2str(dmc(z+124,3)/255) ',' num2str(dmc(z+124,4)/255) '])']);
+end
+for z=25:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group7.
 function group7_Callback(hObject, eventdata, handles)
@@ -664,7 +710,14 @@ function group7_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group7
-
+global dmc
+for z = 1:24
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+148,2)/255) ',' num2str(dmc(z+148,3)/255) ',' num2str(dmc(z+148,4)/255) '])']);
+end
+for z=25:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group8.
 function group8_Callback(hObject, eventdata, handles)
@@ -673,7 +726,14 @@ function group8_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group8
-
+global dmc
+for z = 1:25
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+172,2)/255) ',' num2str(dmc(z+172,3)/255) ',' num2str(dmc(z+172,4)/255) '])']);
+end
+for z=26:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group9.
 function group9_Callback(hObject, eventdata, handles)
@@ -682,7 +742,14 @@ function group9_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group9
-
+global dmc
+for z = 1:25
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+197,2)/255) ',' num2str(dmc(z+197,3)/255) ',' num2str(dmc(z+197,4)/255) '])']);
+end
+for z=26:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group10.
 function group10_Callback(hObject, eventdata, handles)
@@ -691,7 +758,14 @@ function group10_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group10
-
+global dmc
+for z = 1:25
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+222,2)/255) ',' num2str(dmc(z+222,3)/255) ',' num2str(dmc(z+222,4)/255) '])']);
+end
+for z=26:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group11.
 function group11_Callback(hObject, eventdata, handles)
@@ -700,7 +774,14 @@ function group11_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group11
-
+global dmc
+for z = 1:23
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+247,2)/255) ',' num2str(dmc(z+247,3)/255) ',' num2str(dmc(z+247,4)/255) '])']);
+end
+for z=24:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group12.
 function group12_Callback(hObject, eventdata, handles)
@@ -709,7 +790,14 @@ function group12_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group12
-
+global dmc
+for z = 1:25
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+270,2)/255) ',' num2str(dmc(z+270,3)/255) ',' num2str(dmc(z+270,4)/255) '])']);
+end
+for z=26:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group13.
 function group13_Callback(hObject, eventdata, handles)
@@ -718,7 +806,14 @@ function group13_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group13
-
+global dmc
+for z = 1:25
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+295,2)/255) ',' num2str(dmc(z+295,3)/255) ',' num2str(dmc(z+295,4)/255) '])']);
+end
+for z=26:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group14.
 function group14_Callback(hObject, eventdata, handles)
@@ -727,7 +822,14 @@ function group14_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group14
-
+global dmc
+for z = 1:26
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+295,2)/255) ',' num2str(dmc(z+295,3)/255) ',' num2str(dmc(z+295,4)/255) '])']);
+end
+for z=27:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group15.
 function group15_Callback(hObject, eventdata, handles)
@@ -736,7 +838,14 @@ function group15_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group15
-
+global dmc
+for z = 1:24
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+321,2)/255) ',' num2str(dmc(z+321,3)/255) ',' num2str(dmc(z+321,4)/255) '])']);
+end
+for z=25:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group16.
 function group16_Callback(hObject, eventdata, handles)
@@ -745,7 +854,14 @@ function group16_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group16
-
+global dmc
+for z = 1:24
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+345,2)/255) ',' num2str(dmc(z+345,3)/255) ',' num2str(dmc(z+345,4)/255) '])']);
+end
+for z=25:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group17.
 function group17_Callback(hObject, eventdata, handles)
@@ -754,7 +870,14 @@ function group17_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group17
-
+global dmc
+for z = 1:24
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+369,2)/255) ',' num2str(dmc(z+369,3)/255) ',' num2str(dmc(z+369,4)/255) '])']);
+end
+for z=25:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group18.
 function group18_Callback(hObject, eventdata, handles)
@@ -763,7 +886,14 @@ function group18_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group18
-
+global dmc
+for z = 1:8
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+393,2)/255) ',' num2str(dmc(z+393,3)/255) ',' num2str(dmc(z+393,4)/255) '])']);
+end
+for z=9:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group19.
 function group19_Callback(hObject, eventdata, handles)
@@ -772,7 +902,14 @@ function group19_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group19
-
+global dmc
+for z = 1:20
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+401,2)/255) ',' num2str(dmc(z+401,3)/255) ',' num2str(dmc(z+401,4)/255) '])']);
+end
+for z=21:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
 
 % --- Executes on button press in group20.
 function group20_Callback(hObject, eventdata, handles)
@@ -781,3 +918,395 @@ function group20_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of group20
+global dmc
+for z = 1:7
+   eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(dmc(z+421,2)/255) ',' num2str(dmc(z+421,3)/255) ',' num2str(dmc(z+421,4)/255) '])']);
+end
+for z=8:32
+    eval(['set(handles.color' num2str(z) ',''BackgroundColor'',[' num2str(1) ',' num2str(1) ',' num2str(1) '])']);
+end
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color1.
+function color1_Callback(hObject, eventdata, handles)
+% hObject    handle to color1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color1
+global pencolor
+pencolor = get(handles.color1,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color2.
+function color2_Callback(hObject, eventdata, handles)
+% hObject    handle to color2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color2
+global pencolor
+pencolor = get(handles.color2,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color3.
+function color3_Callback(hObject, eventdata, handles)
+% hObject    handle to color3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color3
+global pencolor
+pencolor = get(handles.color3,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color4.
+function color4_Callback(hObject, eventdata, handles)
+% hObject    handle to color4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color4
+global pencolor
+pencolor = get(handles.color4,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color5.
+function color5_Callback(hObject, eventdata, handles)
+% hObject    handle to color5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color5
+global pencolor
+pencolor = get(handles.color5,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color6.
+function color6_Callback(hObject, eventdata, handles)
+% hObject    handle to color6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color6
+global pencolor
+pencolor = get(handles.color6,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color7.
+function color7_Callback(hObject, eventdata, handles)
+% hObject    handle to color7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color7
+global pencolor
+pencolor = get(handles.color7,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color8.
+function color8_Callback(hObject, eventdata, handles)
+% hObject    handle to color8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color8
+global pencolor
+pencolor = get(handles.color8,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color9.
+function color9_Callback(hObject, eventdata, handles)
+% hObject    handle to color9 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color9
+global pencolor
+pencolor = get(handles.color9,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color10.
+function color10_Callback(hObject, eventdata, handles)
+% hObject    handle to color10 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color10
+global pencolor
+pencolor = get(handles.color10,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color11.
+function color11_Callback(hObject, eventdata, handles)
+% hObject    handle to color11 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color11
+global pencolor
+pencolor = get(handles.color11,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color12.
+function color12_Callback(hObject, eventdata, handles)
+% hObject    handle to color12 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color12
+global pencolor
+pencolor = get(handles.color12,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color13.
+function color13_Callback(hObject, eventdata, handles)
+% hObject    handle to color13 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color13
+global pencolor
+pencolor = get(handles.color13,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color14.
+function color14_Callback(hObject, eventdata, handles)
+% hObject    handle to color14 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color14
+global pencolor
+pencolor = get(handles.color14,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color15.
+function color15_Callback(hObject, eventdata, handles)
+% hObject    handle to color15 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color15
+global pencolor
+pencolor = get(handles.color15,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color16.
+function color16_Callback(hObject, eventdata, handles)
+% hObject    handle to color16 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color16
+global pencolor
+pencolor = get(handles.color16,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color17.
+function color17_Callback(hObject, eventdata, handles)
+% hObject    handle to color17 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color17
+global pencolor
+pencolor = get(handles.color17,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color18.
+function color18_Callback(hObject, eventdata, handles)
+% hObject    handle to color18 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color18
+global pencolor
+pencolor = get(handles.color18,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color19.
+function color19_Callback(hObject, eventdata, handles)
+% hObject    handle to color19 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color19
+global pencolor
+pencolor = get(handles.color19,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color20.
+function color20_Callback(hObject, eventdata, handles)
+% hObject    handle to color20 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color20
+global pencolor
+pencolor = get(handles.color20,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color21.
+function color21_Callback(hObject, eventdata, handles)
+% hObject    handle to color21 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color21
+global pencolor
+pencolor = get(handles.color21,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color22.
+function color22_Callback(hObject, eventdata, handles)
+% hObject    handle to color22 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color22
+global pencolor
+pencolor = get(handles.color22,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color23.
+function color23_Callback(hObject, eventdata, handles)
+% hObject    handle to color23 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color23
+global pencolor
+pencolor = get(handles.color23,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color24.
+function color24_Callback(hObject, eventdata, handles)
+% hObject    handle to color24 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color24
+global pencolor
+pencolor = get(handles.color24,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color25.
+function color25_Callback(hObject, eventdata, handles)
+% hObject    handle to color25 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color25
+global pencolor
+pencolor = get(handles.color25,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color26.
+function color26_Callback(hObject, eventdata, handles)
+% hObject    handle to color26 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color26
+global pencolor
+pencolor = get(handles.color26,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color27.
+function color27_Callback(hObject, eventdata, handles)
+% hObject    handle to color27 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color27
+global pencolor
+pencolor = get(handles.color27,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color28.
+function color28_Callback(hObject, eventdata, handles)
+% hObject    handle to color28 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color28
+global pencolor
+pencolor = get(handles.color28,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color29.
+function color29_Callback(hObject, eventdata, handles)
+% hObject    handle to color29 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color29
+global pencolor
+pencolor = get(handles.color29,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color30.
+function color30_Callback(hObject, eventdata, handles)
+% hObject    handle to color30 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color30
+global pencolor
+pencolor = get(handles.color30,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color31.
+function color31_Callback(hObject, eventdata, handles)
+% hObject    handle to color31 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color31
+global pencolor
+pencolor = get(handles.color31,'BackgroundColor');
+guidata(hObject, handles);
+
+
+% --- Executes on button press in color32.
+function color32_Callback(hObject, eventdata, handles)
+% hObject    handle to color32 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of color32
+global pencolor
+pencolor = get(handles.color32,'BackgroundColor');
+guidata(hObject, handles);
