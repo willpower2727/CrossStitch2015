@@ -277,7 +277,12 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global localim
+localim(:,:,1) = 255;
+localim(:,:,2) = 255;
+localim(:,:,3) = 255;
 cla(handles.axes1,'reset');
+
 
 guidata(hObject, handles);
 
@@ -936,7 +941,7 @@ function color1_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color1
 global pencolor
-pencolor = get(handles.color1,'BackgroundColor');
+pencolor = get(handles.color1,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -948,7 +953,7 @@ function color2_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color2
 global pencolor
-pencolor = get(handles.color2,'BackgroundColor');
+pencolor = get(handles.color2,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -960,7 +965,7 @@ function color3_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color3
 global pencolor
-pencolor = get(handles.color3,'BackgroundColor');
+pencolor = get(handles.color3,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -972,7 +977,7 @@ function color4_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color4
 global pencolor
-pencolor = get(handles.color4,'BackgroundColor');
+pencolor = get(handles.color4,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -984,7 +989,7 @@ function color5_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color5
 global pencolor
-pencolor = get(handles.color5,'BackgroundColor');
+pencolor = get(handles.color5,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -996,7 +1001,7 @@ function color6_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color6
 global pencolor
-pencolor = get(handles.color6,'BackgroundColor');
+pencolor = get(handles.color6,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1008,7 +1013,7 @@ function color7_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color7
 global pencolor
-pencolor = get(handles.color7,'BackgroundColor');
+pencolor = get(handles.color7,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1020,7 +1025,7 @@ function color8_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color8
 global pencolor
-pencolor = get(handles.color8,'BackgroundColor');
+pencolor = get(handles.color8,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1032,7 +1037,7 @@ function color9_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color9
 global pencolor
-pencolor = get(handles.color9,'BackgroundColor');
+pencolor = get(handles.color9,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1056,7 +1061,7 @@ function color11_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color11
 global pencolor
-pencolor = get(handles.color11,'BackgroundColor');
+pencolor = get(handles.color11,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1068,7 +1073,7 @@ function color12_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color12
 global pencolor
-pencolor = get(handles.color12,'BackgroundColor');
+pencolor = get(handles.color12,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1080,7 +1085,7 @@ function color13_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color13
 global pencolor
-pencolor = get(handles.color13,'BackgroundColor');
+pencolor = get(handles.color13,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1092,7 +1097,7 @@ function color14_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color14
 global pencolor
-pencolor = get(handles.color14,'BackgroundColor');
+pencolor = get(handles.color14,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1104,7 +1109,7 @@ function color15_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color15
 global pencolor
-pencolor = get(handles.color15,'BackgroundColor');
+pencolor = get(handles.color15,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1116,7 +1121,7 @@ function color16_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color16
 global pencolor
-pencolor = get(handles.color16,'BackgroundColor');
+pencolor = get(handles.color16,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1128,7 +1133,7 @@ function color17_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color17
 global pencolor
-pencolor = get(handles.color17,'BackgroundColor');
+pencolor = get(handles.color17,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1140,7 +1145,7 @@ function color18_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color18
 global pencolor
-pencolor = get(handles.color18,'BackgroundColor');
+pencolor = get(handles.color18,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1152,7 +1157,7 @@ function color19_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color19
 global pencolor
-pencolor = get(handles.color19,'BackgroundColor');
+pencolor = get(handles.color19,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1164,7 +1169,7 @@ function color20_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color20
 global pencolor
-pencolor = get(handles.color20,'BackgroundColor');
+pencolor = get(handles.color20,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1176,7 +1181,7 @@ function color21_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color21
 global pencolor
-pencolor = get(handles.color21,'BackgroundColor');
+pencolor = get(handles.color21,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1188,7 +1193,7 @@ function color22_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color22
 global pencolor
-pencolor = get(handles.color22,'BackgroundColor');
+pencolor = get(handles.color22,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1200,7 +1205,7 @@ function color23_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color23
 global pencolor
-pencolor = get(handles.color23,'BackgroundColor');
+pencolor = get(handles.color23,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1212,7 +1217,7 @@ function color24_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color24
 global pencolor
-pencolor = get(handles.color24,'BackgroundColor');
+pencolor = get(handles.color24,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1224,7 +1229,7 @@ function color25_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color25
 global pencolor
-pencolor = get(handles.color25,'BackgroundColor');
+pencolor = get(handles.color25,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1236,7 +1241,7 @@ function color26_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color26
 global pencolor
-pencolor = get(handles.color26,'BackgroundColor');
+pencolor = get(handles.color26,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1248,7 +1253,7 @@ function color27_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color27
 global pencolor
-pencolor = get(handles.color27,'BackgroundColor');
+pencolor = get(handles.color27,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1260,7 +1265,7 @@ function color28_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color28
 global pencolor
-pencolor = get(handles.color28,'BackgroundColor');
+pencolor = get(handles.color28,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1272,7 +1277,7 @@ function color29_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color29
 global pencolor
-pencolor = get(handles.color29,'BackgroundColor');
+pencolor = get(handles.color29,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1284,7 +1289,7 @@ function color30_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color30
 global pencolor
-pencolor = get(handles.color30,'BackgroundColor');
+pencolor = get(handles.color30,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1296,7 +1301,7 @@ function color31_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color31
 global pencolor
-pencolor = get(handles.color31,'BackgroundColor');
+pencolor = get(handles.color31,'BackgroundColor')*255;
 guidata(hObject, handles);
 
 
@@ -1308,5 +1313,5 @@ function color32_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of color32
 global pencolor
-pencolor = get(handles.color32,'BackgroundColor');
+pencolor = get(handles.color32,'BackgroundColor')*255;
 guidata(hObject, handles);
