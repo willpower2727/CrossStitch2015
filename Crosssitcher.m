@@ -608,13 +608,14 @@ maximize(f1);
 xlim([0.5 n+0.5]);
 ylim([0.5 m+0.5]);
 maximize(f1);
-set(gca,'Unit','normalized','Position',[0 0 1 1])
-finalim = getframe(gca);
+% set(gca,'Unit','normalized','Position',[0 0 1 1])
+% set(gcf, 'Color', 'None')
+% finalim = getframe(gca);
 % finalim = image(finalim);
-finalim = frame2im(finalim);
+% finalim = frame2im(finalim);
 % print(handles.axes1,'-dpng','r300',[filename '.bmp']);
-imwrite(finalim,[filename '.png'],'png','ResolutionUnit','meter','XResolution',15748,'YResolution',15748);
-
+% imwrite(finalim,[filename '.png'],'png','ResolutionUnit','meter','XResolution',15748,'YResolution',15748);
+export_fig(filename,'-bmp','-transparent');
 
 guidata(hObject, handles);
 
