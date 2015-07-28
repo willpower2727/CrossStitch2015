@@ -65,6 +65,7 @@ localim = rand(10,10,3);
 axes(handles.axes1);
 % set(handles.axes1,'CData',localim);
 imagesc(localim);
+axis equal
 drawnow
 %setup color wheel
 load dmc
@@ -264,6 +265,7 @@ localim = imread([path filename]);
 axes(handles.axes1)
 % set(handles.axes1,'CData',localim);
 imagesc(localim);
+axis equal
 drawnow
 % imagesc(localim);
 % keyboard
@@ -300,6 +302,7 @@ end
 axes(handles.axes1);
 % set(handles.axes1,'CData',localim);
 imagesc(localim);
+axis equal
 drawnow
 % imagesc(localim);
 guidata(hObject, handles);
@@ -336,6 +339,7 @@ end
 axes(handles.axes1);
 % set(handles.axes1,'CData',localim);
 imagesc(localim);
+axis equal
 drawnow
 % imagesc(localim);
 guidata(hObject, handles);
@@ -393,6 +397,10 @@ localim = newim;
 axes(handles.axes1);
 % set(handles.axes1,'CData',localim);
 imagesc(localim);
+if get(handles.meshtoggle,'Value') == 1
+    [~] = makemesh(handles)
+end
+axis equal
 drawnow
 % imagesc(localim);
 
@@ -409,6 +417,7 @@ localim = permute(localim,[2 1 3]);
 axes(handles.axes1);
 % set(handles.axes1,'CData',localim);
 imagesc(localim);
+axis equal
 drawnow
 % imagesc(localim);
 
@@ -431,6 +440,8 @@ localim = uint8(255*ones(str2num(h{1}),str2num(w{1}),3));
 axes(handles.axes1)
 % set(handles.axes1,'CData',localim);
 imagesc(localim);
+axis equal
+drawnow
 % imagesc(localim);
 
 guidata(hObject, handles);
@@ -443,74 +454,141 @@ global localim
 
 
 if get(handles.meshtoggle,'Value') == 1
-    [m,n,~] = size(localim);
-    temp = ones(m,n);
-    pixelwidth = 1;%diff(temp(:,1))/(m-1);
-    pixelheight = 1;%diff(temp(:,2))/(n-1);
-    ytop = temp(1,1)-(pixelheight/2);
-    ybottom = temp(2,1)-(pixelheight/2);
-    % keyboard
-    y = linspace(0.5,m+0.5,m+1);
-    x = linspace(0.5,n+0.5,n+1);
-
-    xv = zeros(1, 2*numel(x));
-    xv(1:2:end) = x;
-    xv(2:2:end) = x;
-
-    yv = repmat([y(1) ; y(end)], 1, numel(x));
-    yv(:,2:2:end) = flipud(yv(:,2:2:end));
-
-    xv = xv(:);
-    yv = yv(:);
-    
-    yh = zeros(1, 2*numel(y));
-    yh(1:2:end) = y;
-    yh(2:2:end) = y;
-    
-    xh = repmat([x(1) ; x(end)], 1, numel(y));
-    xh(:,2:2:end) = flipud(xh(:,2:2:end));
-    
-    xh = xh(:);
-    yh = yh(:);
-    
-    xv2 = nan(size(xv));
-    yv2 = nan(size(yv));
-    for z = 1:5:length(xv)-1
-        xv2(z:z+1) = xv(z:z+1);
-    end
-    for z = 1:5:length(yv)-1
-        yv2(z:z+1) = yv(z:z+1);
-    end
-    xv2(isnan(xv2))=[];
-    yv2(isnan(yv2))=[];
-    
-    xh2 = nan(size(xh));
-    yh2 = nan(size(yh));
-    for z = 1:5:length(xh)-1
-        xh2(z:z+1) = xh(z:z+1);
-    end
-    for z = 1:5:length(yh)-1
-        yh2(z:z+1) = yh(z:z+1);
-    end
-    xh2(isnan(xh2))=[];
-    yh2(isnan(yh2))=[];
-    
-    axes(handles.axes1)
-    hold on
-    plot(xv,yv,'k','LineWidth',0.5);
-    plot(xh,yh,'k','LineWidth',0.5);
-    plot(xv2,yv2,'k','LineWidth',2);
-    plot(xh2,yh2,'k','LineWidth',2);
-    hold off
+    [~] = makemesh(handles);
+    %{
+%     [m,n,~] = size(localim);
+%     temp = ones(m,n);
+%     pixelwidth = 1;%diff(temp(:,1))/(m-1);
+%     pixelheight = 1;%diff(temp(:,2))/(n-1);
+%     ytop = temp(1,1)-(pixelheight/2);
+%     ybottom = temp(2,1)-(pixelheight/2);
+%     % keyboard
+%     y = linspace(0.5,m+0.5,m+1);
+%     x = linspace(0.5,n+0.5,n+1);
+% 
+%     xv = zeros(1, 2*numel(x));
+%     xv(1:2:end) = x;
+%     xv(2:2:end) = x;
+% 
+%     yv = repmat([y(1) ; y(end)], 1, numel(x));
+%     yv(:,2:2:end) = flipud(yv(:,2:2:end));
+% 
+%     xv = xv(:);
+%     yv = yv(:);
+%     
+%     yh = zeros(1, 2*numel(y));
+%     yh(1:2:end) = y;
+%     yh(2:2:end) = y;
+%     
+%     xh = repmat([x(1) ; x(end)], 1, numel(y));
+%     xh(:,2:2:end) = flipud(xh(:,2:2:end));
+%     
+%     xh = xh(:);
+%     yh = yh(:);
+%     
+%     xv2 = nan(size(xv));
+%     yv2 = nan(size(yv));
+%     for z = 1:5:length(xv)-1
+%         xv2(z:z+1) = xv(z:z+1);
+%     end
+%     for z = 1:5:length(yv)-1
+%         yv2(z:z+1) = yv(z:z+1);
+%     end
+%     xv2(isnan(xv2))=[];
+%     yv2(isnan(yv2))=[];
+%     
+%     xh2 = nan(size(xh));
+%     yh2 = nan(size(yh));
+%     for z = 1:5:length(xh)-1
+%         xh2(z:z+1) = xh(z:z+1);
+%     end
+%     for z = 1:5:length(yh)-1
+%         yh2(z:z+1) = yh(z:z+1);
+%     end
+%     xh2(isnan(xh2))=[];
+%     yh2(isnan(yh2))=[];
+%     
+%     axes(handles.axes1)
+%     hold on
+%     plot(xv,yv,'k','LineWidth',0.5);
+%     plot(xh,yh,'k','LineWidth',0.5);
+%     plot(xv2,yv2,'k','LineWidth',2);
+%     plot(xh2,yh2,'k','LineWidth',2);
+%     hold off
+    %}
 else
     axes(handles.axes1)
-%     set(handles.axes1,'CData',localim);
-imagesc(localim);
-drawnow
-%     imagesc(localim);
+    %     set(handles.axes1,'CData',localim);
+    imagesc(localim);
+    axis equal
+    drawnow
+    %     imagesc(localim);
 end
 
 guidata(hObject, handles);
+
+function out = makemesh(handles)
+global localim
+out = [];
+[m,n,~] = size(localim);
+temp = ones(m,n);
+pixelwidth = 1;%diff(temp(:,1))/(m-1);
+pixelheight = 1;%diff(temp(:,2))/(n-1);
+ytop = temp(1,1)-(pixelheight/2);
+ybottom = temp(2,1)-(pixelheight/2);
+% keyboard
+y = linspace(0.5,m+0.5,m+1);
+x = linspace(0.5,n+0.5,n+1);
+
+xv = zeros(1, 2*numel(x));
+xv(1:2:end) = x;
+xv(2:2:end) = x;
+
+yv = repmat([y(1) ; y(end)], 1, numel(x));
+yv(:,2:2:end) = flipud(yv(:,2:2:end));
+
+xv = xv(:);
+yv = yv(:);
+
+yh = zeros(1, 2*numel(y));
+yh(1:2:end) = y;
+yh(2:2:end) = y;
+
+xh = repmat([x(1) ; x(end)], 1, numel(y));
+xh(:,2:2:end) = flipud(xh(:,2:2:end));
+
+xh = xh(:);
+yh = yh(:);
+
+xv2 = nan(size(xv));
+yv2 = nan(size(yv));
+for z = 1:5:length(xv)-1
+    xv2(z:z+1) = xv(z:z+1);
+end
+for z = 1:5:length(yv)-1
+    yv2(z:z+1) = yv(z:z+1);
+end
+xv2(isnan(xv2))=[];
+yv2(isnan(yv2))=[];
+
+xh2 = nan(size(xh));
+yh2 = nan(size(yh));
+for z = 1:5:length(xh)-1
+    xh2(z:z+1) = xh(z:z+1);
+end
+for z = 1:5:length(yh)-1
+    yh2(z:z+1) = yh(z:z+1);
+end
+xh2(isnan(xh2))=[];
+yh2(isnan(yh2))=[];
+
+axes(handles.axes1)
+hold on
+plot(xv,yv,'k','LineWidth',0.5);
+plot(xh,yh,'k','LineWidth',0.5);
+plot(xv2,yv2,'k','LineWidth',1);
+plot(xh2,yh2,'k','LineWidth',1);
+hold off
 
 
 % --- Executes on button press in savebutton.
@@ -518,9 +596,21 @@ function savebutton_Callback(hObject, eventdata, handles)
 % hObject    handle to savebutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global localim
+[m,n,~] = size(localim);
 out = inputdlg('Please enter the image name:');
 filename = out{1};
-finalim = getframe(handles.axes1);
+
+f1 = figure();
+maximize(f1);
+s = copyobj(handles.axes1,f1);
+maximize(f1);
+xlim([0.5 n+0.5]);
+ylim([0.5 m+0.5]);
+maximize(f1);
+set(gca,'Unit','normalized','Position',[0 0 1 1])
+finalim = getframe(gca);
+% finalim = image(finalim);
 finalim = frame2im(finalim);
 % print(handles.axes1,'-dpng','r300',[filename '.bmp']);
 imwrite(finalim,[filename '.png'],'png','ResolutionUnit','meter','XResolution',15748,'YResolution',15748);
@@ -548,6 +638,11 @@ global hh;
 hh = image(localim);
 pan off
 zoom off
+axes(handles.axes1)
+axis equal
+if get(handles.meshtoggle,'Value') == 1
+    [~] = makemesh(handles)
+end
 % hold on
 if get(handles.picktoolbutton,'Value') == 1
     set(hh,'ButtonDownFcn',@start_pencil);
@@ -563,6 +658,7 @@ global hh
 global hand
 global pencolor
 axes(hand.axes1);
+axis equal
 coords=get(hand.axes1,'CurrentPoint'); %since this is the axes callback, src=gca
 x=coords(1,1,1);
 y=coords(1,2,1);
@@ -582,7 +678,11 @@ try
 catch me
 end
 axes(hand.axes1);
+axis equal
 set(hh,'CData',localim);
+if get(hand.meshtoggle,'Value') == 1
+    [~] = makemesh(hand);
+end
 
 function continue_pencil(src,eventdata)
 global localim
@@ -592,6 +692,7 @@ global pencolor
 % hand = guihandles(gcf);
 %Note: src is now the figure handle, not the axes, so we need to use gca.
 axes(hand.axes1);
+axis equal
 coords=get(hand.axes1,'currentpoint'); %this updates every time i move the mouse
 x=coords(1,1,1);
 y=coords(1,2,1);
@@ -602,12 +703,14 @@ localim(round(y),round(x),3) = pencolor(3);
 catch me
 end
 axes(hand.axes1);
+axis equal
 set(hh,'CData',localim);
 
 function done_pencil(src,evendata)
 %all this funciton does is turn the motion function off 
 global hand
 axes(hand.axes1);
+axis equal
 set(gcf,'windowbuttonmotionfcn','')
 set(gcf,'windowbuttonupfcn','')
 
