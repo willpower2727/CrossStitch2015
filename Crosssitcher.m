@@ -615,7 +615,7 @@ maximize(f1);
 % finalim = frame2im(finalim);
 % print(handles.axes1,'-dpng','r300',[filename '.bmp']);
 % imwrite(finalim,[filename '.png'],'png','ResolutionUnit','meter','XResolution',15748,'YResolution',15748);
-export_fig(filename,'-bmp','-transparent');
+export_fig(filename,'-bmp','-transparent','-r300');
 
 guidata(hObject, handles);
 
