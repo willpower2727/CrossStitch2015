@@ -10,3 +10,4 @@ colors. The GUI can convert all pixles into the least-squares nearest DMC color 
 
 Saving an edited or new picture saves the picture with a grid in high resolution.
 
+It's FREE!
